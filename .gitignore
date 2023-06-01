@@ -1,0 +1,7 @@
+/node_modules/
+/dist/
+/.vscode/
+/workFiles/
+./config.json
+
+.DS_Store

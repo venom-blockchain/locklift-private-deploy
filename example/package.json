@@ -1,0 +1,26 @@
+{
+  "name": "simple",
+  "keywords": [
+    ""
+  ],
+  "license": "Apache-2.0",
+  "author": {
+    "name": "s0r0k"
+  },
+  "scripts": {
+    "run:local-node": "docker run --rm -d --name local-node -e USER_AGREEMENT=yes -p 80:80 tonlabs/local-node",
+    "stop:local-node": "docker stop local-node"
+  },
+  "devDependencies": {
+    "@types/chai": "^4.3.4",
+    "@types/mocha": "^10.0.1",
+    "@types/node": "^18.15.1",
+    "chai": "^4.3.7",
+    "everscale-standalone-client": "^2.1.16",
+    "locklift": "^2.5.0",
+    "locklift-private-deploy": "^1.0.0",
+    "prettier": "^2.8.4",
+    "ts-mocha": "^10.0.0",
+    "typescript": "^4.7.4"
+  }
+}
