@@ -1,6 +1,6 @@
 {
   "name": "locklift-private-deploy",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Locklift plugin that enables you to deploy smart contracts using private RPC endpoint.",
   "main": "dist/index.js",
   "homepage": "https://github.com/venom-blockchain/locklift-private-deploy",
