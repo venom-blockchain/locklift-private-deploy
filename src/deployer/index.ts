@@ -7,7 +7,7 @@ import axios from "axios";
 import { Signer } from "locklift";
 import { DeployParams } from "locklift/internal/factory";
 import { ConstructorParams, TransactionWithOutput } from "locklift/types";
-import { ClockWithOffset, SignedMessage, createExternalMessage, repackAddress } from "nekoton-wasm";
+import { ClockWithOffset, SignedMessage, TokensObject, createExternalMessage, repackAddress } from "nekoton-wasm";
 
 export class PrivateDeployer<T extends FactoryType> {
   private readonly locklift: Locklift<T>;
@@ -45,18 +45,21 @@ export class PrivateDeployer<T extends FactoryType> {
     await this.locklift.utils.errorExtractor(this.locklift.giver.sendTo(expectedAddress, value));
     const stateInit = await this.locklift.provider.getStateInit(abi, deployParams);
     const signer = (await this.locklift.keystore.getSigner("0"))!;
+    // @ts-ignore
+    const signatureId = locklift.context.network.config.connection.id;
 
     const signedMessage = await this.prepareSignedMessage(
       expectedAddress,
       signer,
       JSON.stringify(abi),
       stateInit.stateInit,
-      constructorParams,
-      1000,
+      JSON.parse(JSON.stringify(constructorParams)),
+      signatureId,
     );
 
     const subscription = new this.locklift.provider.Subscriber();
     const txProm = subscription.transactions(expectedAddress).first();
+
     try {
       await this.sendMessage(this.privateRPC, signedMessage.boc);
     } catch (err) {
@@ -64,11 +67,10 @@ export class PrivateDeployer<T extends FactoryType> {
     }
 
     const transactions = (await txProm).transactions;
+    await subscription.unsubscribe();
 
     const tx = { transaction: transactions[0] } as TransactionWithOutput;
-
     const contract = new this.locklift.provider.Contract(abi, expectedAddress);
-    contract;
 
     return { contract, tx };
   };
@@ -78,7 +80,7 @@ export class PrivateDeployer<T extends FactoryType> {
     signer: Signer,
     abi: string,
     stateInit: string,
-    constructorParams: any,
+    constructorParams: TokensObject,
     signatureId = 1000,
     TIMEOUT = 60,
   ): Promise<SignedMessage> => {
