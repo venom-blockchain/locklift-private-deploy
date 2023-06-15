@@ -23,6 +23,6 @@ addPlugin({
     network?: string;
   }) => {
     // @ts-ignore
-    return new PrivateDeployer(locklift, config.pivateRPC);
+    return new PrivateDeployer(locklift, config.privateRPC);
   },
 });

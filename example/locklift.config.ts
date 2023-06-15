@@ -20,7 +20,7 @@ const VENOM_TESTNET_TRACE_ENDPOINT =
   process.env.VENOM_TESTNET_TRACE_ENDPOINT || "https://gql-testnet.venom.foundation/graphql";
 
 const config: LockliftConfig = {
-  pivateRPC: "http://private-rpc.com/rpc",
+  privateRPC: "http://private-rpc.com/rpc",
   compiler: {
     // Specify path to your TON-Solidity-Compiler
     // path: "/mnt/o/projects/broxus/TON-Solidity-Compiler/build/solc/solc",
@@ -76,8 +76,8 @@ const config: LockliftConfig = {
         },
       },
       giver: {
-        address: "",
-        key: "",
+        address: "", // FIXME: add your address
+        key: "", // FIXME: add your private key
       },
       tracing: {
         endpoint: VENOM_TESTNET_TRACE_ENDPOINT,

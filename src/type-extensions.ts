@@ -8,6 +8,5 @@ export type PrivateDeployerExtension<T extends FactoryType> = {
 };
 
 export type LockliftConfigExtension = {
-  pivateRPC: string;
+  privateRPC: string;
 };
-

@@ -8,14 +8,16 @@
 
 [Locklift](https://github.com/broxus/locklift) plugin that enables you to deploy smart contracts using a private RPC endpoint.
 
-
 ## Installation
-1. Install plugin.
+
+- Install the plugin.
+
 ```bash
 npm i --save-dev locklift-private-deploy
 ```
 
-2. Initialize the plugin via the `locklift.config.ts` file. 
+- Initialize the plugin via the `locklift.config.ts` file.
+
 ```ts
 // locklift.config.ts
 // ...
@@ -30,17 +32,17 @@ declare module "locklift" {
 // ...
 
 const config: LockliftConfig = {
-  pivateRPC: "http://private-rpc.com/rpc",
+  privateRPC: "http://private-rpc.com/rpc",
   // ...
 }
 ```
 
-## Usage
+## How to use
 
-You can use this plugin as simple as `locklift.factory.deployContract()` 
+You can use this plugin as simple as `locklift.factory.deployContract()`. For example:
 
 ```ts
-const { contract: sample } = await locklift.pivateRPC.deployContract({
+const { contract: sample } = await locklift.privateRPC.deployContract({
     contract: "Sample",
     publicKey: signer.publicKey,
     initParams: { _nonce: 0 },
@@ -48,4 +50,3 @@ const { contract: sample } = await locklift.pivateRPC.deployContract({
     value: locklift.utils.toNano(3),
   });
 ```
-
