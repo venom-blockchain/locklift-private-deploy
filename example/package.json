@@ -18,7 +18,7 @@
     "chai": "^4.3.7",
     "everscale-standalone-client": "^2.1.16",
     "locklift": "^2.5.0",
-    "locklift-private-deploy": "^1.0.3",
+    "locklift-private-deploy": "^1.0.4",
     "prettier": "^2.8.4",
     "ts-mocha": "^10.0.0",
     "typescript": "^4.7.4"
