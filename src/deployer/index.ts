@@ -1,4 +1,5 @@
-import { Address, Contract, Locklift } from "locklift";
+import { Address, Contract } from "everscale-inpage-provider";
+import { Locklift } from "locklift";
 import { DeployContractParams, FactoryType } from "locklift/internal/factory";
 import { DeployTransaction } from "locklift/types";
 
